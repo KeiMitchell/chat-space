@@ -44,8 +44,8 @@ Things you may want to cover:
 |block|text|
 |picture|string|
 ### Association
-- belongs_to :users
-- belongs_to :groups
+- belongs_to :user
+- belongs_to :group
 
 ## groupsテーブル
 |Column|Type|Options|
