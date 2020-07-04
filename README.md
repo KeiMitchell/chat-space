@@ -32,7 +32,8 @@ Things you may want to cover:
 |name|string|null: false|
 ### Association
 - has_many :messages
-- has_many :user_group
+- has_many :groups, through: :user_group
+
 
 ## messagesテーブル
 |Column|Type|Options|
@@ -50,7 +51,7 @@ Things you may want to cover:
 |------|----|-------|
 |group_name|string|null: false|
 ### Association
-- has_many :user_group
+- has_many :users, through: :user_group
 - has_many :messages
 
 
