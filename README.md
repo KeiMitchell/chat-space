@@ -33,6 +33,7 @@ Things you may want to cover:
 ### Association
 - has_many :messages
 - has_many :groups, through: :user_group
+- has_many :user_group
 
 
 ## messagesテーブル
