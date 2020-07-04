@@ -41,8 +41,8 @@ Things you may want to cover:
 |------|----|-------|
 |user_id|string|null: false, foreign_key: true|
 |group_id|string|null: false, foreign_key: true|
-|block|text|null: false|
-|picture|string|null: false|
+|block|text|
+|picture|string|
 ### Association
 - belongs_to :users
 - belongs_to :groups
