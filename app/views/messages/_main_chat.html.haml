@@ -1,0 +1,40 @@
+.main-chat
+  .main-chat__group-info
+    .main-chat__group-info__current-group
+      .main-chat__group-info__current-group__group
+        test
+      .main-chat__group-info__current-group__members
+        Member: masa
+    .main-chat__group-info__edit-btn
+      = link_to 'Edit', '#',class:"Editlink"
+
+  .main-chat__messages
+    .main-chat__messages__message
+      .main-chat__messages__message__name-date
+        .main-chat__messages__message__name-date__name
+          masa
+        .main-chat__messages__message__name-date__date
+          2019年11月20日(Wed) 17:43:01
+      .main-chat__messages__message__chat
+        おはよう！
+    .main-chat__messages__message
+      .main-chat__messages__message__name-date
+        .main-chat__messages__message__name-date__name
+          masa
+        .main-chat__messages__message__name-date__date
+          2019年11月20日(Wed) 17:43:34
+      .main-chat__messages__message__chat
+        今日は夜から雨
+        
+      
+
+
+  .main-chat__message-form
+    %main-chat__message-form.new-message
+      .input-box
+        %input{type: "text", class: "input-box__text", placeholder: "type a message"}
+        %label{class: "input-box__image"}
+          =icon('fas', 'image')
+          %input{type: "file", class: "input-box__image__file"}
+      %input{type: "submit", class: "submit-btn"}
+
