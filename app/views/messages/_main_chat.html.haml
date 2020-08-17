@@ -1,40 +1,82 @@
-.main-chat
-  .main-chat__group-info
-    .main-chat__group-info__current-group
-      .main-chat__group-info__current-group__group
-        test
-      .main-chat__group-info__current-group__members
-        Member: masa
-    .main-chat__group-info__edit-btn
-      = link_to 'Edit', '#',class:"Editlink"
-
-  .main-chat__messages
-    .main-chat__messages__message
-      .main-chat__messages__message__name-date
-        .main-chat__messages__message__name-date__name
-          masa
-        .main-chat__messages__message__name-date__date
-          2019年11月20日(Wed) 17:43:01
-      .main-chat__messages__message__chat
-        おはよう！
-    .main-chat__messages__message
-      .main-chat__messages__message__name-date
-        .main-chat__messages__message__name-date__name
-          masa
-        .main-chat__messages__message__name-date__date
-          2019年11月20日(Wed) 17:43:34
-      .main-chat__messages__message__chat
-        今日は夜から雨
+-# .main-chat
+-#   .main-chat__group-info
+-#     .main-chat__group-info__current-group
+-#       .main-chat__group-info__current-group__group
+-#         = @group.name
+-#       .main-chat__group-info__current-group__members
         
-      
+-#     .main-chat__group-info__edit-btn
+-#       = link_to edit_group_path(@group) do
+-#         Edit
+-#   .main-chat__messages
+-#     .main-chat__messages__message
+-#       .main-chat__messages__message__name-date
+-#         .main-chat__messages__message__name-date__name
+-#           masa
+-#         .main-chat__messages__message__name-date__date
+-#           2019年11月20日(Wed) 17:43:01
+-#       .main-chat__messages__message__chat
+-#         おはよう！
+-#     .main-chat__messages__message
+-#       .main-chat__messages__message__name-date
+-#         .main-chat__messages__message__name-date__name
+-#           masa
+-#         .main-chat__messages__message__name-date__date
+-#           2019年11月20日(Wed) 17:43:34
+-#       .main-chat__messages__message__chat
+-#         今日は夜から雨
+.chat
+  .header
+    .left-header
+      .left-header__title
+        = @group.name
+      %ul.left-header__members
+        Member：
+        %li.member
+          - @group.users.each do |user|
+            = user.name
+    .right-header
+      .right-header__button
+        = link_to edit_group_path(@group) do
+          Edit
+    -# .messages
+    -#   .message
+    -#     .upper-message
+    -#       .upper-message__user-name
+    -#         Kei
+    -#       .upper-message__date
+    -#         2017/04/04
+    -#     .lower-meesage
+    -#       .lower-message__content
+    -#         Hey
+  .messages
+    = render @messages
 
 
-  .main-chat__message-form
-    %main-chat__message-form.new-message
-      .input-box
-        %input{type: "text", class: "input-box__text", placeholder: "type a message"}
-        %label{class: "input-box__image"}
-          =icon('fas', 'image')
-          %input{type: "file", class: "input-box__image__file"}
-      %input{type: "submit", class: "submit-btn"}
+  -# .main-chat__message-form
+  -#   %main-chat__message-form.new-message
+  -#     .input-box
+  -#       %input{type: "text", class: "input-box__text", placeholder: "type a message"}
+  -#       %label{class: "input-box__image"}
+  -#         =icon('fas', 'image')
+  -#         %input{type: "file", class: "input-box__image__file"}
+  -#     %input{type: "submit", class: "submit-btn"}
+
+  -#   .form
+  -#     %form
+  -#       %input.form__message
+  -#       .form__mask
+  -#         %label.form__mask__image
+  -#           = icon('fa','image',class: 'icon')
+  -#           %input.hidden{type: 'file'}
+  -#       %input.form__submit{type: 'submit', value: 'Send'}
+
+  
+  = form_with model: [@group, @message], html: {class: "form"}, local: true do |f|
+    .input
+      = f.text_field :content, class: 'form__message', placeholder: 'type a message'
+      = f.label :image, class: 'form__mask' do
+        = icon('fas', 'image', class: 'icon')
+        = f.file_field :image, class: 'hidden'
+    = f.submit 'Send', class: 'form__submit'
 

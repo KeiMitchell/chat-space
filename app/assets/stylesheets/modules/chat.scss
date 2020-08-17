@@ -31,6 +31,9 @@
       margin-top: 28px;
       padding: 0 20px;
     }
+    a {
+      color: $light_blue;
+    }
   }
 
   .messages {
@@ -80,7 +83,7 @@
       float: left;
       height: 50px;
       padding-right: 10px;
-      &__image {
+      .icon {
         font-size: 20px;
         line-height: 50px;
       }
