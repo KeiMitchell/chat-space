@@ -1,9 +1,36 @@
+
 $(function(){
+
+  // let reloadMessages = function() {
+  //   let last_message_id = $('.MessageBox:last').data("message-id") || 0;
+  //   $.ajax({
+  //     url: "api/messages",
+  //     type: 'get',
+  //     dataType: 'json',
+  //     data: {id: last_message_id}
+  //   })
+  //   .done(function(messages) {
+  //     if (messages.length !== 0) {
+  //       //追加するHTMLの入れ物を作る
+  //       let insertHTML = '';
+  //       //配列messagesの中身一つ一つを取り出し、HTMLに変換したものを入れ物に足し合わせる
+  //       $.each(messages, function(i, message) {
+  //         insertHTML += buildHTML(message)
+  //       });
+  //       //メッセージが入ったHTMLに、入れ物ごと追加
+  //       $('.MessageField').append(insertHTML);
+  //       $('.MessageField').animate({ scrollTop: $('.MessageField')[0].scrollHeight});
+  //     }
+  //   })
+  //   .fail(function() {
+  //     alert('error');
+  //   });
+  // };
+
   function buildHTML(message){
     if ( message.image ) {
       let html =
-      
-        `<div class="message">
+        `<div class="message" data-message-id=${message.id}>
           <div class="upper-message">
             <div class="upper-message__userName">
               ${message.user_name}
@@ -22,7 +49,7 @@ $(function(){
       return html;
     } else {
       let html =
-      `<div class="message">
+      `<div class="message" data-message-id=${message.id}>
         <div class="upper-message">
           <div class="upper-message__userName">
             ${message.user_name}
@@ -62,6 +89,8 @@ $(function(){
     })
     .fail(function() {
       alert("メッセージ送信に失敗しました");
+      $('.form__submit').prop("disabled", false);
     });
   });
+  // setInterval(reloadMessages, 7000);
 });
